@@ -15,18 +15,18 @@ if (args.Length == 0) {
 // hacking together a simple FizzBuzz solution - no object oriented programming, no classes, no methods ;-)
 /* * FizzBuzz
  * FizzBuzz code
- * For all integers that are multiples of 3, print "Fizz" instead of the number.
- * For all integers that are multiples of 5, print "Buzz" instead of the number.
- * For all integers that are multiples of both 3 and 5, print "FizzBuzz" instead of the number.
+ * For all integers from 1 to argument, that are multiples of 3, print "Fizz" instead of the number.
+ * For all integers from 1 to argument, that are multiples of 5, print "Buzz" instead of the number.
+ * For all integers from1 to argument, that are multiples of both 3 and 5, print "FizzBuzz" instead of the number.
  */
 StringBuilder fizzbuzz = new();
 
 // if the first argument is not a number, return 1 (false)
-if (!int.TryParse(args[1], out int number)) {
+if (!int.TryParse(args[0], out int number)) {
     System.Console.WriteLine("The first argument is not a valid integer. Exiting");
     return 1;
 }
-var numberArgument = int.Parse(args[1]);
+var numberArgument = int.Parse(args[0]);
 
 fizzbuzz.Append("[");
 // for all integers from 1 to the given number, print Fizz, Buzz, or FizzBuzz
