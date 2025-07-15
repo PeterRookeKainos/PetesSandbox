@@ -26,13 +26,38 @@ if (!int.TryParse(args[1], out int number)) {
     System.Console.WriteLine("The first argument is not a valid integer. Exiting");
     return 1;
 }
-var i = int.Parse(args[1]);
+var numberArgument = int.Parse(args[1]);
 
-if (i % 3 == 0 && i % 5 == 0) { fizzbuzz.AppendLine("FizzBuzz"); }
-else if (i % 3 == 0) { fizzbuzz.AppendLine("Fizz"); }
-else if (i % 5 == 0) { fizzbuzz.AppendLine("Buzz"); }
-else {   fizzbuzz.AppendLine(i.ToString()); }
+fizzbuzz.Append("[");
+// for all integers from 1 to the given number, print Fizz, Buzz, or FizzBuzz
+for (int i = 1; i <= numberArgument; i++)
+{
+    if (i % 3 == 0 && i % 5 == 0)
+    {
+        fizzbuzz.Append("\"FizzBuzz\"");
+    }
+    else if (i % 3 == 0)
+    {
+        fizzbuzz.Append("\"Fizz\"");
+    }
+    else if (i % 5 == 0)
+    {
+        fizzbuzz.Append("\"Buzz\"");
+    }
+    else
+    {
+        fizzbuzz.Append("\"" + i.ToString() + "\"");
+    }
 
-Console.WriteLine(fizzbuzz.ToString());
+    if (i < numberArgument)
+    {
+        fizzbuzz.Append(",");
+    }
+}
+fizzbuzz.Append("]");
+
+Console.WriteLine(
+    "n = " + numberArgument + " "
+    + fizzbuzz.ToString());
 
 return 0;
