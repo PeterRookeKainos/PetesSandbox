@@ -12,7 +12,9 @@ if (args.Length == 0) {
     return 1;
 }
 
-// if the first argument is not a number, return 1 (false)
+// Strange behaviour of the dotnet run command: it as it uses the program name as the first argument (like java) and the second argument as the number. 
+// However, running in the IDE, the first argument (args[0]) is the the number argument (like c). 
+// if the first argument is not a number, return 1 (false), otherwise parse it to an int.
 if (!int.TryParse(args[0], out int numberArgument)) {
     System.Console.WriteLine("The first argument is not a valid integer. Exiting");
     return 1;
