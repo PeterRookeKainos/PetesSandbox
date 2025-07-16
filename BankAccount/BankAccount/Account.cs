@@ -3,10 +3,10 @@ namespace BankAccount;
 public class Account
 {
     String accountHolderName;
-    decimal balance;
+    double balance;
     private bool isOverdrawn;
     
-    public Account(string accountHolderName, decimal initialBalance, bool isOverdrawn)
+    public Account(string accountHolderName, double initialBalance, bool isOverdrawn)
     {
         this.accountHolderName = accountHolderName;
         this.balance = initialBalance;
@@ -19,35 +19,39 @@ public class Account
         set { accountHolderName = value; }
     }
     
-    public decimal Balance
+    public double Balance
     {
         get { return balance; }
         set { balance = value; }
     }
     
-    public void Deposit(decimal amount)
+    public void Deposit(double amount)
     {
-        if (amount <= 0)
+        if (amount <= 0 && amount < double.MaxValue)
         {
             throw new ArgumentException("Deposit amount must be positive.");
+        }
+        if (amount > balance)
+        {
+            isOverdrawn = false;      
         }
         balance += amount;
     }
     
-    public void Withdraw(decimal amount)
+    public void Withdraw(double amount)
     {
-        if (amount <= 0)
+        if (amount <= 0 && amount < double.MaxValue)
         {
             throw new ArgumentException("Withdrawal amount must be positive.");
         }
         if (amount > balance)
         {
-            throw new InvalidOperationException("Insufficient funds for withdrawal.");
+            isOverdrawn = true;
         }
         balance -= amount;
     }
 
-    public decimal GetBalance()
+    public double GetBalance()
     {
         return balance;
     }   
@@ -57,11 +61,23 @@ public class Account
         return balance < 0;
     }
     
-    public void Transfer(Account targetAccount, decimal amount)
+    public void Transfer(Account targetAccount, double amount)
     {
+        if (amount <= 0 && amount < double.MaxValue)
+        {
+            throw new ArgumentException("Transfer amount must be positive.");
+        }
         if (targetAccount == null)
         {
             throw new ArgumentNullException(nameof(targetAccount), "Target account cannot be null.");
+        }
+        if (amount > balance)
+        {
+            throw new InvalidOperationException("Insufficient funds for transfer.");
+        }
+        if (targetAccount.Equals(this))
+        {
+            throw new InvalidOperationException("Cannot transfer to your own account.");
         }
         Withdraw(amount);
         targetAccount.Deposit(amount);
