@@ -23,11 +23,15 @@ public class Program
             bobAccount.Withdraw(300);
             Console.WriteLine($"{bobAccount.AccountHolderName} withdrew 300. New balance: {bobAccount.GetBalance()}");
             
+            // overdraft account
+            oscarAccount.Withdraw(600); // This will throw an exception since the balance is insufficient
+            Console.WriteLine($"{oscarAccount.AccountHolderName} withdrew 600. New balance: {oscarAccount.GetBalance()}");
+            
             // extra operations to transfer (not in the specification)
             aliceAccount.Transfer(bobAccount, 400);
             Console.WriteLine($"{aliceAccount.AccountHolderName} transferred 400 to {bobAccount.AccountHolderName}. New balance: {aliceAccount.GetBalance()}");
             Console.WriteLine($"{bobAccount.AccountHolderName} received the transfer. New balance: {bobAccount.GetBalance()}");
-
+            
         }
         catch (Exception ex)
         {
