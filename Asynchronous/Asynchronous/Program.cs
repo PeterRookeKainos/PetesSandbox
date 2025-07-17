@@ -17,6 +17,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        // ANSI escape codes for formatting console output
         const String NORMAL = "\x1b[0m";
         const String BOLD_ON = "\x1b[1m";
         const String UNDERLINE_ON = "\x1b[4m";
