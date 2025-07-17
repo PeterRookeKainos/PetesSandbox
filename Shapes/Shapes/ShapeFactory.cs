@@ -3,7 +3,7 @@ namespace Shapes;
 /*  
  * The factory class will implement the IShape interface, but it will not implement the GetArea method.
  * The GetArea method will be implemented in the concrete classes that inherit from the IShape interface.
- *
+ * Reference: https://refactoring.guru/design-patterns/factory-method 
  * "Every problem in programming can be solved with a layer of abstraction, except for the problem of too many layers of abstraction."
  */
 
