@@ -1,0 +1,31 @@
+namespace Shapes;
+
+/*  
+ * The factory class will implement the IShape interface, but it will not implement the GetArea method.
+ * The GetArea method will be implemented in the concrete classes that inherit from the IShape interface.
+ *
+ * "Every problem in programming can be solved with a layer of abstraction, except for the problem of too many layers of abstraction."
+ */
+
+public class ShapeFactory : IShape
+{
+    public double GetArea()
+    {
+        // This method is not implemented in the factory class.
+        // The factory class is responsible for creating instances of shapes, not calculating their areas.
+        throw new NotImplementedException("This method should not be called on the factory class.");
+    }
+
+    // Factory method to create a shape based on type
+    public IShape CreateShape(string shapeType, params double[] dimensions)
+    {
+        return shapeType.ToLower() switch
+        {
+            "triangle" => new Triangle(dimensions[0], dimensions[1], dimensions[2]),
+            "rectangle" => new Rectangle(dimensions[0], dimensions[1]),
+            "circle" => new Circle(dimensions[0]),
+            "hexagon" => new Hexagon(dimensions[0]),
+            _ => throw new ArgumentException("Invalid shape type")
+        };
+    }
+}
