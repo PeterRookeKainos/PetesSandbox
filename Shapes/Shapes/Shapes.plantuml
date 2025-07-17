@@ -1,18 +1,20 @@
 @startuml
 
-!theme plain
+@startuml
+!theme hacker
 top to bottom direction
 skinparam linetype ortho
 
+rectangle IShape
+rectangle Shape
 rectangle Circle
 rectangle Hexagon
-rectangle IShape
 rectangle Rectangle
-rectangle Shape
 rectangle Triangle
 
 Circle     -[#039ba1,dashed]-^  IShape    
 Hexagon    -[#039ba1,dashed]-^  IShape    
 Rectangle  -[#039ba1,dashed]-^  IShape    
 Triangle   -[#039ba1,dashed]-^  IShape    
+
 @enduml
