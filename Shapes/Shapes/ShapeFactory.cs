@@ -7,15 +7,9 @@ namespace Shapes;
  * "Every problem in programming can be solved with a layer of abstraction, except for the problem of too many layers of abstraction."
  */
 
-public class ShapeFactory : IShape
+public class ShapeFactory 
 {
-    public double GetArea()
-    {
-        // This method is not implemented in the factory class.
-        // The factory class is responsible for creating instances of shapes, not calculating their areas.
-        throw new NotImplementedException("This method should not be called on the factory class.");
-    }
-
+    
     // Factory method to create a shape based on type
     public IShape CreateShape(string shapeType, params double[] dimensions)
     {

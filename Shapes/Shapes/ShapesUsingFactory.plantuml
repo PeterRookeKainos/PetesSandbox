@@ -17,7 +17,6 @@ Hexagon       -[#039ba1,dashed]-^  IShape
 Rectangle     -[#039ba1,dashed]-^  IShape           
 Triangle      -[#039ba1,dashed]-^  IShape
 
-ShapeFactory -[#3574f0,dashed]-^ IShape
 ShapeFactory -[#3574f0,plain]->> Circle
 ShapeFactory -[#3574f0,plain]->> Hexagon  
 ShapeFactory -[#3574f0,plain]->> Rectangle
