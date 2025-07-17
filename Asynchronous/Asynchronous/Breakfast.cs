@@ -16,7 +16,7 @@ public class Breakfast
 {
     const int DELAY = 2000; 
     
-    public void MakeBreakfast() 
+    public String MakeBreakfast() 
     {
         Coffee cup = PourCoffee();
         Console.WriteLine("1--> Coffee is ready");
@@ -35,6 +35,8 @@ public class Breakfast
         Juice oj = PourOJ();
         Console.WriteLine("5--> Orange juice is ready");
         Console.WriteLine("*--> Breakfast is ready!");
+        
+        return "Breakfast is ready!";
     }
     
     private static Juice PourOJ()

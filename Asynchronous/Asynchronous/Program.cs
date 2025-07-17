@@ -1,4 +1,10 @@
-﻿using AsyncBreakfast;
+﻿/*
+ *  "Premature optimization is the root of all evil" is a well-known adage in software development, popularized by Donald Knuth.
+ * It means that focusing on optimizing code for speed or efficiency before it's necessary or before the code is even
+ * working correctly can lead to wasted time and effort, and can even make the code harder to maintain and debug. 
+ */
+
+using AsyncBreakfast;
 using Asynchronous;
 
 internal class HashBrown { }

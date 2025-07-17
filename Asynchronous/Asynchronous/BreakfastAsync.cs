@@ -30,7 +30,7 @@ namespace AsyncBreakfast
     public class BreakfastAsync
     {
         const int DELAY = 2000; 
-        public async Task MakeBreakfast()
+        public async Task<string> MakeBreakfast()
         {
             Coffee cup = PourCoffee();
             Console.WriteLine("1--> Coffee is ready");
@@ -63,6 +63,8 @@ namespace AsyncBreakfast
             Juice oj = PourOJ();
             Console.WriteLine("5--> Orange juice is ready");
             Console.WriteLine("*--> Breakfast is ready!");
+            
+            return "Breakfast is ready!";
         }
 
         static async Task<Toast> MakeToastWithButterAndJamAsync(int number)
