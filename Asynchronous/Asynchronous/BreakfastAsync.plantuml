@@ -1,0 +1,31 @@
+@startuml
+actor Dougal
+participant BreakfastAsync
+participant Coffee
+participant Egg
+participant HashBrown
+participant Toast
+participant Juice
+
+Dougal -> BreakfastAsync: MakeBreakfast()
+BreakfastAsync -> Coffee: PourCoffee()
+BreakfastAsync -> BreakfastAsync: Console.WriteLine("1--> Coffee is ready")
+
+BreakfastAsync -> BreakfastAsync: FryEggsAsync(2)
+BreakfastAsync -> BreakfastAsync: FryHashBrownsAsync(3)
+BreakfastAsync -> BreakfastAsync: MakeToastWithButterAndJamAsync(2)
+
+alt Parallel tasks
+    BreakfastAsync -> Egg: FryEggsAsync
+    BreakfastAsync -> HashBrown: FryHashBrownsAsync
+    BreakfastAsync -> Toast: MakeToastWithButterAndJamAsync
+end
+
+BreakfastAsync -> BreakfastAsync: Console.WriteLine("2--> Eggs are ready")
+BreakfastAsync -> BreakfastAsync: Console.WriteLine("3--> Hash browns are ready")
+BreakfastAsync -> BreakfastAsync: Console.WriteLine("4--> Toast is ready")
+
+BreakfastAsync -> Juice: PourOJ()
+BreakfastAsync -> BreakfastAsync: Console.WriteLine("5--> Orange juice is ready")
+BreakfastAsync -> BreakfastAsync: Console.WriteLine("*--> Breakfast is ready!")
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+actor Zebedee
+participant Breakfast
+participant Coffee
+participant Egg
+participant HashBrown
+participant Toast
+participant Juice
+
+Zebedee -> Breakfast: MakeBreakfast()
+Breakfast -> Coffee: PourCoffee()
+Breakfast -> Breakfast: Console.WriteLine("Coffee is ready")
+
+Breakfast -> Egg: FryEggs(2)
+Breakfast -> Breakfast: Console.WriteLine("Eggs are ready")
+
+Breakfast -> HashBrown: FryHashBrowns(3)
+Breakfast -> Breakfast: Console.WriteLine("Hash browns are ready")
+
+Breakfast -> Toast: MakeToastWithButterAndJam(2)
+Breakfast -> Breakfast: Console.WriteLine("Toast is ready")
+
+Breakfast -> Juice: PourOJ()
+Breakfast -> Breakfast: Console.WriteLine("Orange juice is ready")
+
+Breakfast -> Breakfast: Console.WriteLine("Breakfast is ready!")
+@enduml

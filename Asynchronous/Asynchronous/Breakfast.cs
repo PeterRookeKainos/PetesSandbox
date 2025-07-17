@@ -5,8 +5,9 @@ namespace Asynchronous;
  * An example of how to write synchronous code.
  */
 
-// Code lifted from the microsoft docs (https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/) 
-// with some modifications ;-) 
+/* Code lifted from the Microsoft docs (https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/)
+   with some modifications ;-)
+*/ 
 
 using System;
 using System.Threading.Tasks;
