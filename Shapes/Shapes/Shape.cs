@@ -2,5 +2,5 @@ namespace Shapes;
 
 public abstract class Shape
 {
-    public abstract int GetArea();
+    public abstract double GetArea();
 }
