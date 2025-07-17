@@ -1,0 +1,26 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+rectangle Circle
+rectangle Hexagon
+rectangle IShape
+rectangle Rectangle
+rectangle Shape
+rectangle ShapeFactory
+rectangle Triangle
+
+Circle        -[#039ba1,dashed]-^  IShape       
+Hexagon       -[#039ba1,dashed]-^  IShape       
+Rectangle     -[#039ba1,dashed]-^  IShape       
+ShapeFactory  -[#3574f0,plain]->>  Circle       
+ShapeFactory  -[#3574f0,plain]->>  Hexagon      
+ShapeFactory  -[#834df0,plain]->>  IShape       
+ShapeFactory  -[#039ba1,dashed]-^  IShape       
+ShapeFactory  -[#3574f0,plain]->>  IShape       
+ShapeFactory  -[#3574f0,plain]->>  Rectangle    
+ShapeFactory  -[#3574f0,plain]->>  Triangle     
+Triangle      -[#039ba1,dashed]-^  IShape       
+@enduml

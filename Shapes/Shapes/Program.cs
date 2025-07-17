@@ -1,6 +1,5 @@
 ﻿namespace Shapes;
 
-// create a class to run the code
 public class Program
 {
     public static void Main(string[] args)
