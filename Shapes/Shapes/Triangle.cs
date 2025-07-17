@@ -4,20 +4,33 @@ namespace Shapes;
 
 public class Triangle : IShape
 {
-    private int point1;
-    private int point2;
-    private int point3;
+    private double point1;
+    private double point2;
+    private double point3;
     
-    public Triangle(int p1, int p2, int p3)
+    public Triangle(double p1, double p2, double p3)
     {
         point1 = p1;
         point2 = p2;
-        point3 = p2;
+        point3 = p3;
     }
 
-    public int GetArea()
+    public double GetArea()
     {
         //Console.WriteLine($"{point1}, {point2}, {point3}");
         return point1 * point2 * point3;
+    }
+    
+    public double getPoint1()
+    {
+        return point1;
+    }
+    public double getPoint2()
+    {
+        return point2;
+    }
+    public double getPoint3()
+    {
+        return point3;
     }
 }

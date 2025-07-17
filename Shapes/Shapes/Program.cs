@@ -6,7 +6,7 @@ public class Program
     public static void Main(string[] args)
     {
         IShape triangle = new Triangle(3, 4, 5);
-        int area = triangle.GetArea();
+        var area = triangle.GetArea();
         Console.WriteLine($"The area of the triangle is: {area}");
         
         IShape rectangle = new Rectangle(5, 10);
@@ -22,18 +22,3 @@ public class Program
         Console.WriteLine($"The area of the hexagon is: {area}");
     }
 }
-
-
-
-
-
-
-/*
-public class RunIt
-{
-    public static String Main()
-    {
-        RunIt.Main();
-    }  
-}
-*/

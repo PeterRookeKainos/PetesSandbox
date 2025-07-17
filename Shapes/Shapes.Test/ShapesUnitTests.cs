@@ -1,6 +1,6 @@
 namespace Shapes.Test;
 
-public class UnitTest1
+public class ShapesUnitTests
 {
     [Fact]
     public void Test1()

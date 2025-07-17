@@ -2,16 +2,26 @@ namespace Shapes;
 
 public class Hexagon : IShape
 {
-    private int sideLength;
+    private double sideLength;
 
-    public Hexagon(int sideLength)
+    public Hexagon(double sideLength)
     {
+        if (sideLength <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(sideLength), "Side length must be a positive value.");
+        }
         this.sideLength = sideLength;
     }
 
-    public int GetArea()
+    public double GetArea()
     {
         // Area of a regular hexagon = (3 * √3 / 2) * s^2
-        return (int)(1.5 * Math.Sqrt(3) * sideLength * sideLength);
+        return (1.5 * Math.Sqrt(3) * sideLength * sideLength);
+    }
+
+    public double SideLength
+    {
+        get { return sideLength; }
+        set { sideLength = value; }
     }
 }

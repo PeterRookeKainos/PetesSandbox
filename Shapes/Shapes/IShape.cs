@@ -7,5 +7,5 @@ namespace Shapes;
 
 public interface IShape
 {
-    public int GetArea();
+    public double GetArea();
 }
