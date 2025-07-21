@@ -1,5 +1,8 @@
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Microsoft.Identity.Client;
 using MvcMovie.Data;
 using MvcMovie.Models;
 using Serilog;
@@ -27,6 +30,16 @@ builder.Services.AddControllersWithViews();
 
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
+
+// read the application options from the configuration
+builder.Services.Configure<AppOptions>(builder.Configuration.GetSection("AppOptions"));
+
+// register the options as a singleton so that it can be injected
+builder.Services.AddSingleton(resolver =>
+{
+    // this will resolve the IOptions<AppOptions> and return the value
+    return resolver.GetRequiredService<IOptions<AppOptions>>().Value;
+});
 
 var app = builder.Build();
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MvcMovie.Data;
 using MvcMovie.Models;
 using NuGet.Protocol;
@@ -16,6 +17,7 @@ namespace MvcMovie.Controllers
     {
         private readonly MvcMovieContext _context;
         private readonly ILogger<MoviesController> _logger;
+        private readonly AppOptions _options;
 
         /*
         public MoviesController(MvcMovieContext context)
@@ -24,10 +26,20 @@ namespace MvcMovie.Controllers
         }
         */
         
+        /*
         public MoviesController(MvcMovieContext context, ILogger<MoviesController> logger)
         {
             _context = context;
             _logger = logger;
+        }
+        */
+        
+        public MoviesController(MvcMovieContext context, ILogger<MoviesController> logger, IOptions<AppOptions> options)
+        {
+            _context = context;
+            _logger = logger;
+            _options = options.Value;
+            _logger.LogInformation("MoviesController::MoviesController - AppOptions: {AppOptions}", _options.ToJson());
         }
         
         // GET: Movies
