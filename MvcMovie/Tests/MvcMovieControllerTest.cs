@@ -1,91 +1,80 @@
+using Xunit;
+using Moq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using MvcMovie.Controllers;
 using MvcMovie.Data;
 using MvcMovie.Models;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Xunit;
-using Moq;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 
-namespace MvcMovie.Tests;
 
-public class MvcMovieControllerTest
+// these here tests don't work, but don't stop the app from running.
+// TODO - fix the tests to work with the current codebase!
+namespace MvcMovie.Tests
 {
-    /* NOT WORKING
-    [Fact]
-    public async Task Create_RedirectsToIndex_OnSuccess()
+    public class MoviesControllerTests
     {
-        // Arrange
-        var mockContext = new Mock<MvcMovieContext>();
-        var mockLogger = new Mock<ILogger<MoviesController>>();
-        var controller = new MoviesController(mockContext.Object, mockLogger.Object);
-        var newMovie = new Movie { Id = 1, Title = "New Movie" };
+       
+        [Fact]
+        public async Task Details_ReturnsViewResult_WithMovie()
+        {
+            var mockContext = new Mock<MvcMovieContext>();
+            mockContext.Setup(c => c.Movie.FindAsync(1))
+                .ReturnsAsync(new Movie { Id = 1, Title = "Movie 1", ReleaseDate = new DateTime(2020, 1, 1), Genre = "Drama", Price = 9.99M });
+            var mockLogger = new Mock<ILogger<MoviesController>>();
+            var mockIOptions = new Mock<IOptions<AppOptions>>();
+            var controller = new MoviesController(mockContext.Object, mockLogger.Object, mockIOptions.Object);
 
-        // Act
-        var result = await controller.Create(newMovie);
+            var result = await controller.Details(1);
 
-        // Assert
-        var redirectResult = Assert.IsType<RedirectToActionResult>(result);
-        Assert.Equal("Index", redirectResult.ActionName);
-        mockContext.Verify(c => c.Add(It.IsAny<Movie>()), Times.Once);
-        mockContext.Verify(c => c.SaveChangesAsync(default), Times.Once);
+            Assert.IsType<ViewResult>(result);
+        }
+
+        [Fact]
+        public async Task Create_RedirectsToIndex_OnSuccess()
+        {
+            var mockContext = new Mock<MvcMovieContext>();
+            var mockLogger = new Mock<ILogger<MoviesController>>();
+            var mockIOptions = new Mock<IOptions<AppOptions>>();
+            
+            var controller = new MoviesController(mockContext.Object, mockLogger.Object, null);
+            var newMovie = new Movie { Id = 1, Title = "New Movie" };
+
+            var result = await controller.Create(newMovie);
+
+            Assert.IsType<RedirectToActionResult>(result);
+            mockContext.Verify(c => c.Add(It.IsAny<Movie>()), Times.Once);
+            mockContext.Verify(c => c.SaveChangesAsync(default), Times.Once);
+        }
+
+        [Fact]
+        public async Task Edit_ReturnsNotFound_WhenIdMismatch()
+        {
+            var mockContext = new Mock<MvcMovieContext>();
+            var mockLogger = new Mock<ILogger<MoviesController>>();
+            var controller = new MoviesController(mockContext.Object, mockLogger.Object, null);
+            var movie = new Movie { Id = 2, Title = "Movie 2" };
+
+            var result = await controller.Edit(1, movie);
+
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task DeleteConfirmed_RemovesMovie_AndRedirects()
+        {
+            var mockContext = new Mock<MvcMovieContext>();
+            var mockLogger = new Mock<ILogger<MoviesController>>();
+            var controller = new MoviesController(mockContext.Object, mockLogger.Object, null);
+
+            var result = await controller.DeleteConfirmed(1);
+
+            Assert.IsType<RedirectToActionResult>(result);
+            mockContext.Verify(c => c.Remove(It.IsAny<Movie>()), Times.Once);
+            mockContext.Verify(c => c.SaveChangesAsync(default), Times.Once);
+        }
     }
-
-    [Fact]
-    public async Task Create_ReturnsViewResult_WhenModelStateIsInvalid()
-    {
-        // Arrange
-        var mockContext = new Mock<MvcMovieContext>();
-        var mockLogger = new Mock<ILogger<MoviesController>>();
-        var controller = new MoviesController(mockContext.Object, mockLogger.Object);
-        controller.ModelState.AddModelError("Title", "Required");
-        var newMovie = new Movie { Id = 1 };
-
-        // Act
-        var result = await controller.Create(newMovie);
-
-        // Assert
-        var viewResult = Assert.IsType<ViewResult>(result);
-        Assert.Equal(newMovie, viewResult.Model);
-        mockContext.Verify(c => c.Add(It.IsAny<Movie>()), Times.Never);
-        mockContext.Verify(c => c.SaveChangesAsync(default), Times.Never);
-    }
-    
-    [Fact]
-    public async Task Details_ReturnsViewResult_WithMovie()
-    {
-        // Arrange
-        var mockContext = new Mock<MvcMovieContext>();
-        mockContext.Setup(c => c.Movie.FindAsync(1))
-            .ReturnsAsync(new Movie { Id = 1, Title = "Movie 1" });
-        var mockLogger = new Mock<ILogger<MoviesController>>();
-        var controller = new MoviesController(mockContext.Object, mockLogger.Object);
-    
-        // Act
-        var result = await controller.Details(1);
-    
-        // Assert
-        var viewResult = Assert.IsType<ViewResult>(result);
-        var model = Assert.IsType<Movie>(viewResult.Model);
-        Assert.Equal(1, model.Id);
-    }
-    
-    [Fact]
-    public async Task Details_ReturnsNotFound_WhenMovieDoesNotExist()
-    {
-        // Arrange
-        var mockContext = new Mock<MvcMovieContext>();
-        mockContext.Setup(c => c.Movie.FindAsync(1)).ReturnsAsync((Movie)null);
-        var mockLogger = new Mock<ILogger<MoviesController>>();
-        var controller = new MoviesController(mockContext.Object, mockLogger.Object);
-    
-        // Act
-        var result = await controller.Details(1);
-    
-        // Assert
-        Assert.IsType<NotFoundResult>(result);
-    }
- */   
 }
