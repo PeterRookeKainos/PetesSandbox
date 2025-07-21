@@ -7,21 +7,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
+using NuGet.Protocol;
+using Serilog;
 
 namespace MvcMovie.Controllers
 {
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
+        private readonly ILogger<MoviesController> _logger;
 
+        /*
         public MoviesController(MvcMovieContext context)
         {
             _context = context;
         }
-
+        */
+        
+        public MoviesController(MvcMovieContext context, ILogger<MoviesController> logger)
+        {
+            _context = context;
+            _logger = logger;
+        }
+        
         // GET: Movies
         public async Task<IActionResult> Index(string searchString)
         {
+            _logger.LogInformation("--> MoviesController::Index");
+            _logger.LogError("--> MoviesController::Index - Error example");
             if (_context.Movie == null)
             {
                 return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
@@ -39,9 +52,30 @@ namespace MvcMovie.Controllers
         }
         
         // GET: Movies/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            _logger.LogInformation("MoviesController::Details - id: {Id}", id);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var movie = await _context.Movie
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return View(movie);
+        }
+        
+        // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-
+            // log the id
+            _logger.LogInformation("MoviesController::Delete - id: {Id}", id);
+            
             if (id == null)
             {
                 return NotFound();
@@ -62,6 +96,7 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            _logger.LogInformation("MoviesController::DeleteConfirmed -id : {Id}", id);
             var movie = await _context.Movie.FindAsync(id);
             if (movie != null)
             {
@@ -75,6 +110,7 @@ namespace MvcMovie.Controllers
         // GET: Movies/Create
         public IActionResult Create()
         {
+            _logger.LogInformation("MoviesController::Create");
             return View();
         }
 
@@ -85,6 +121,8 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
         {
+            _logger.LogInformation("MoviesController::Create ${Movie}", movie.ToJson());
+            _logger.LogError("MoviesController::Create ${Movie}", movie.ToJson());
             if (ModelState.IsValid)
             {
                 _context.Add(movie);
@@ -97,6 +135,7 @@ namespace MvcMovie.Controllers
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            _logger.LogInformation("MoviesController::Edit - id: {Id}", id);
             if (id == null)
             {
                 return NotFound();
@@ -117,6 +156,7 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
         {
+            _logger.LogInformation("MoviesController::Edit - id: {Id}, ${movie}", id, movie.ToJson());
             if (id != movie.Id)
             {
                 return NotFound();
@@ -147,6 +187,7 @@ namespace MvcMovie.Controllers
         
         private bool MovieExists(int id)
         {
+            _logger.LogInformation("MoviesController::Edit ${id}", id);
             return _context.Movie.Any(e => e.Id == id);
         }
     }
