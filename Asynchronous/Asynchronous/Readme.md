@@ -7,12 +7,14 @@ A simple program to be used during a talk about the Async and Await keywords in 
 - [MindMap](docs/AsyncAwaitMindmap.png) - a Mindmap for Async and Await features in C#
 
 #### Sequential Breakfast
-- [Breakfast.cs Sequence Diagram](docs/BreakfastSequenceDiagram.png) - a sequence diagram showing the flow of the Breakfast.cs program
+- [Breakfast.cs Sequence Diagram](docs/Breakfast.plantuml) - a sequence diagram showing the flow of the Breakfast.cs program
 - [Breakfast.cs Code](Breakfast.cs) - the code for the Breakfast program
 
 #### Asynchronous Breakfast - using Async and Await
-- [BreakfastAsyncSequenceDiagram.png](docs/BreakfastAsyncSequenceDiagram.png) - a sequence diagram showing the flow of the BreakfastAsync program
+- [BreakfastAsyncSequenceDiagram.png](docs/BreakfastAsync.plantuml) - a sequence diagram showing the flow of the BreakfastAsync program
 - [BreakfastAsync.cs Code](BreakfastAsync.cs) - the code for the Breakfast program using Async and Await
 
+#### The "Main" method
+- [Program.cs Code](Program.cs) - the code for the Main method that runs the Breakfast and BreakfastAsync methods
 
 
