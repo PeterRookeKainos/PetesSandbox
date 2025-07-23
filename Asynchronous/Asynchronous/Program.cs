@@ -39,6 +39,7 @@ public class Program
         Console.WriteLine("----------------------------------");
         BreakfastAsync breakfastAsync = new BreakfastAsync();
         startTime = DateTime.Now;
+        // Using Task.Run to execute the asynchronous method synchronously
         Task.Run(() => breakfastAsync.MakeBreakfast()).GetAwaiter().GetResult();
         endTime = DateTime.Now;
         

@@ -36,14 +36,22 @@ namespace AsyncBreakfast
             Console.WriteLine("1--> Coffee is ready");
 
             Console.WriteLine("2,3,4--> Starting eggs, hash brown and toast asynchronously");
+            
+            // Start frying eggs, hash browns, and making toast asynchronously
             var eggsTask = FryEggsAsync(2);
             var hashBrownTask = FryHashBrownsAsync(3);
             var toastTask = MakeToastWithButterAndJamAsync(2);
            
+            // Create a list of tasks to manage the breakfast items
             var breakfastTasks = new List<Task> { eggsTask, hashBrownTask, toastTask };
+            
+            // Wait for the tasks to complete in the order they finish
             while (breakfastTasks.Count > 0)
             {
+                // Wait for any of the breakfast tasks to complete
                 Task finishedTask = await Task.WhenAny(breakfastTasks);
+                
+                // Check which task finished and handle it accordingly
                 if (finishedTask == eggsTask)
                 {
                     Console.WriteLine("2--> Eggs are ready");
@@ -56,7 +64,9 @@ namespace AsyncBreakfast
                 {
                     Console.WriteLine("4--> Toast is ready");
                 }
+                // Await the finished task to ensure it completes before removing it
                 await finishedTask;
+                // Remove the finished task from the list
                 breakfastTasks.Remove(finishedTask);
             }
 
@@ -67,6 +77,7 @@ namespace AsyncBreakfast
             return "Breakfast is ready!";
         }
 
+        // MakeToastWithButterAndJamAsync method is called to make toast with butter and jam asynchronously
         static async Task<Toast> MakeToastWithButterAndJamAsync(int number)
         {
             var toast = await ToastBreadAsync(number);
@@ -88,6 +99,7 @@ namespace AsyncBreakfast
         private static void ApplyButter(Toast toast) =>
             Console.WriteLine("4.4--> Putting butter on the toast");
 
+        // ToastBreadAsync method is called to toast bread asynchronously
         private static async Task<Toast> ToastBreadAsync(int slices)
         {
             for (int slice = 0; slice < slices; slice++)
@@ -101,6 +113,7 @@ namespace AsyncBreakfast
             return new Toast();
         }
 
+        // FryHashBrownsAsync method is called to fry hash browns asynchronously
         private static async Task<HashBrown> FryHashBrownsAsync(int patties)
         {
             Console.WriteLine($"3.1--> Putting {patties} hash brown patties in the pan");
@@ -117,6 +130,7 @@ namespace AsyncBreakfast
             return new HashBrown();
         }
 
+        // FryEggsAsync method is called to fry eggs asynchronously
         private static async Task<Egg> FryEggsAsync(int howMany)
         {
             Console.WriteLine("2.1--> Warming the egg pan...");
