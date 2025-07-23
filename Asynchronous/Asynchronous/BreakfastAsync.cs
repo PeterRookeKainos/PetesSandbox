@@ -37,7 +37,7 @@ namespace AsyncBreakfast
 
             Console.WriteLine("2,3,4--> Starting eggs, hash brown and toast asynchronously");
             
-            // Start frying eggs, hash browns, and making toast asynchronously
+            // Create tasks for frying eggs, hash browns, and making toast asynchronously
             var eggsTask = FryEggsAsync(2);
             var hashBrownTask = FryHashBrownsAsync(3);
             var toastTask = MakeToastWithButterAndJamAsync(2);
@@ -45,10 +45,10 @@ namespace AsyncBreakfast
             // Create a list of tasks to manage the breakfast items
             var breakfastTasks = new List<Task> { eggsTask, hashBrownTask, toastTask };
             
-            // Wait for the tasks to complete in the order they finish
+            // For each of the tasks in the list (breakfastTasks) loop until they are complete
             while (breakfastTasks.Count > 0)
             {
-                // Wait for any of the breakfast tasks to complete
+                // Run tasks and wait for any of the breakfast tasks to complete
                 Task finishedTask = await Task.WhenAny(breakfastTasks);
                 
                 // Check which task finished and handle it accordingly
