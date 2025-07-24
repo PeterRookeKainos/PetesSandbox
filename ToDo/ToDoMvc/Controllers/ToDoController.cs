@@ -13,21 +13,29 @@ namespace ToDoMvc.Controllers
     public class ToDoController : Controller
     {
         private readonly ToDoContext _context;
-
-        public ToDoController(ToDoContext context)
+        private readonly ILogger<ToDoController> _logger;
+        
+        public ToDoController(ToDoContext context, ILogger<ToDoController> logger)
         {
             _context = context;
+            _logger = logger;
+            _logger.LogInformation("--> ToDoController constructor initialized with context and logger.");
         }
+        
 
         // GET: ToDo
         public async Task<IActionResult> Index()
         {
+            // log the action
+            _logger.LogInformation("--> Index GET action called in ToDoController.");
             return View(await _context.ToDo.ToListAsync());
         }
 
         // GET: ToDo/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            // log the action
+            _logger.LogInformation("--> Details GET action called in ToDoController for ID: {Id}", id);
             if (id == null)
             {
                 return NotFound();
@@ -46,6 +54,8 @@ namespace ToDoMvc.Controllers
         // GET: ToDo/Create
         public IActionResult Create()
         {
+            _logger.LogInformation("--> Create GET action called in ToDoController.");
+
             return View();
         }
 
@@ -56,6 +66,9 @@ namespace ToDoMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ToDoName,ToDoDescription,IsComplete,DateCompleted,UserName")] Models.ToDo toDo)
         {
+            // log the action
+            _logger.LogInformation("--> Create POST action called in ToDoController with ToDoName: {ToDoName}", toDo.ToDoName);
+            
             if (ModelState.IsValid)
             {
                 _context.Add(toDo);
@@ -68,6 +81,8 @@ namespace ToDoMvc.Controllers
         // GET: ToDo/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            _logger.LogInformation("--> Edit GET action called in ToDoController for ID: {Id}", id);
+
             if (id == null)
             {
                 return NotFound();
@@ -88,6 +103,9 @@ namespace ToDoMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ToDoName,ToDoDescription,IsComplete,DateCompleted,UserName")] Models.ToDo toDo)
         {
+            // log the action
+            _logger.LogInformation("--> Edit POST action called in ToDoController for ID: {Id} with ToDoName: {ToDoName}", id, toDo.ToDoName);
+            
             if (id != toDo.Id)
             {
                 return NotFound();
@@ -119,6 +137,7 @@ namespace ToDoMvc.Controllers
         // GET: ToDo/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            _logger.LogInformation("--> Delete GET action called in ToDoController for ID: {Id}", id);
             if (id == null)
             {
                 return NotFound();
@@ -139,6 +158,9 @@ namespace ToDoMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            //output to the _logger 
+            _logger.LogInformation("--> Delete POST action called in ToDoController for ID: {Id}", id);
+            
             var toDo = await _context.ToDo.FindAsync(id);
             if (toDo != null)
             {
@@ -151,6 +173,8 @@ namespace ToDoMvc.Controllers
 
         private bool ToDoExists(int id)
         {
+            // log the action
+            _logger.LogInformation("--> Checking if ToDo with ID: {Id} exists in the database.", id);
             return _context.ToDo.Any(e => e.Id == id);
         }
     }
