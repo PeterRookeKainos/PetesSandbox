@@ -13,6 +13,7 @@ if (builder.Environment.IsDevelopment())
         options.UseSqlite(builder.Configuration.GetConnectionString("ToDoContext") ?? throw new InvalidOperationException("Connection string 'ToDoContext' not found."))
             .LogTo(Console.WriteLine, LogLevel.Information, DbContextLoggerOptions.LocalTime | DbContextLoggerOptions.SingleLine)
         );
+        // Uncomment the following line to use MySQL instead - not working yet not able to connect to localhost (might be due to the security on this locked down machine?)
         // options.UseMySQL(builder.Configuration.GetConnectionString("ToDoContext-mysql") ?? throw new InvalidOperationException("Connection string 'ToDoContext' not found.")));
 }
 else
