@@ -37,7 +37,7 @@
 </header>
 
 <div class="govuk-width-container">
-    <a href="#" class="govuk-back-link">Back</a>
+    <!-- <a href="#" class="govuk-back-link">Back</a> -->
     <main class="govuk-main-wrapper">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
@@ -85,8 +85,8 @@
                                 @Html.DisplayFor(modelItem => item.UserName)
                             </td>
                             <td class="govuk-table__cell">
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
                                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                             </td>
                         </tr>

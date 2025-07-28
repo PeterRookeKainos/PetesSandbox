@@ -38,7 +38,8 @@
 
 
 <div class="govuk-width-container">
-    <a href="#" class="govuk-back-link">Back</a>
+    <!-- <a href="#" class="govuk-back-link">Back</a> -->
+    <a asp-action="Index" class="govuk-back-link">Back</a>
     <main class="govuk-main-wrapper">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
@@ -48,43 +49,47 @@
                     <div class="col-md-4">
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="form-group">
-                                <label asp-for="ToDoName" class="control-label"></label>
-                                <input asp-for="ToDoName" class="form-control" />
-                                <span asp-validation-for="ToDoName" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="ToDoDescription" class="control-label"></label>
-                                <input asp-for="ToDoDescription" class="form-control" />
-                                <span asp-validation-for="ToDoDescription" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="IsComplete" class="control-label"></label>
-                                <input asp-for="IsComplete" class="form-control" value="false" /> 
-                                <span asp-validation-for="IsComplete" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="DateCompleted" class="control-label"></label>
-                                <input asp-for="DateCompleted" class="form-control" />
-                                <span asp-validation-for="DateCompleted" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="UserName" class="control-label"></label>
-                                <input asp-for="UserName" class="form-control" />
-                                <span asp-validation-for="UserName" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Create" class="btn btn-primary" />
-                            </div>
+                            
+                            <fieldset class="govuk-fieldset">
+                            
+                                <div class="govuk-form-group">
+                                    <label asp-for="ToDoName" class="govuk-label"></label>
+                                    <input asp-for="ToDoName" class="govuk-input" />
+                                    <span asp-validation-for="ToDoName" class="text-danger"></span>
+                                </div>
+                                <div class="govuk-form-group">
+                                    <label asp-for="ToDoDescription" class="govuk-label"></label>
+                                    <input asp-for="ToDoDescription" class="govuk-input" />
+                                    <span asp-validation-for="ToDoDescription" class="text-danger"></span>
+                                </div>
+                                <div class="govuk-form-group">
+                                    <label asp-for="IsComplete" class="govuk-label"></label>
+                                    <select class="govuk-select" id="IsComplete" name="IsComplete">
+                                        <option value="False">False</option>
+                                        <option value="True">True</option>
+                                    </select>
+                                    <!-- <input asp-for="IsComplete" class="govuk-input" value="false" /> --> 
+                                    <span asp-validation-for="IsComplete" class="text-danger"></span>
+                                </div>
+                                <div class="govuk-form-group">
+                                    <label asp-for="DateCompleted" class="govuk-label"></label>
+                                    <input asp-for="DateCompleted" class="govuk-input" />
+                                    <span asp-validation-for="DateCompleted" class="text-danger"></span>
+                                </div>
+                                <div class="govuk-form-group">
+                                    <label asp-for="UserName" class="govuk-label"></label>
+                                    <input asp-for="UserName" class="govuk-input" />
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+                                <div class="govuk-form-group">
+                                    <input type="submit" value="Create" class="govuk-button" />
+                                </div>
+                            
+                            </fieldset>
+                            
                         </form>
                     </div>
                 </div>
-
-                <div>
-                    <a asp-action="Index">Back to List</a>
-                </div>
-
-            
             </div>
         </div>
     </main>
@@ -93,7 +98,6 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
 
 <footer class="govuk-footer">
   <div class="govuk-width-container">

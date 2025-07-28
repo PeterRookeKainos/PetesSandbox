@@ -12,41 +12,45 @@
     <link rel="stylesheet" href="~/govuk/_base.scss" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="ToDo" asp-action="Index">To Do List</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+<header>
+    <div class="govuk-service-navigation" data-module="govuk-service-navigation">
+        <div class="govuk-width-container">
+            <div class="govuk-service-navigation__container">
+                <nav aria-label="Menu" class="govuk-service-navigation__wrapper">
+                    <button type="button" class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="navigation" hidden>
+                        Menu
+                    </button>
+                    <ul class="govuk-service-navigation__list" id="navigation">
+                        <li class="govuk-service-navigation__item">
+                            <a class="govuk-service-navigation__link" asp-area="" asp-controller="ToDo" asp-action="Index">To Do</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="govuk-service-navigation__item">
+                            <a class="govuk-service-navigation__link" asp-area="" asp-controller="Home" asp-action="Index">About ASP.NET</a>
+                        </li>
+                        <li class="govuk-service-navigation__item">
+                            <a class="govuk-service-navigation__link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
-                </div>
+                </nav>
             </div>
-        </nav>
-    </header>
-    <div class="container">
+        </div>
+    </div>
+</header>
+
+
+<div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - To Do List - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+<footer class="border-top footer text-muted">
+    <!-- TODO put the gov footer stuff here -->
+</footer>
+    <!-- <script src="~/lib/jquery/dist/jquery.min.js"></script> -->
+    <!-- <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+    <!-- <script src="~/js/site.js" asp-append-version="true"></script> -->
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
