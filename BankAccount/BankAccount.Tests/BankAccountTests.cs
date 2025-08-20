@@ -51,8 +51,9 @@ public class AccountTests
     [Fact]
     public void Withdraw_InsufficientFunds_Throws()
     {
-        var account = new Account("Jane", 20.00, false);
-        Assert.Throws<InvalidOperationException>(() => account.Withdraw(30.00));
+        var accountJane = new Account("Jane", 10.00, false);
+        var accountBob = new Account("Bob", 0.00, false);
+        Assert.Throws<InvalidOperationException>(() => accountJane.Transfer(accountBob, 100.00));
     }
 
     [Fact]
