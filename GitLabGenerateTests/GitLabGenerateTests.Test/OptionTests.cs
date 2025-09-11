@@ -646,14 +646,14 @@ namespace GitLabGenerateTests.Test
             Assert.Contains("Type: call", details);
             Assert.Contains("Underlying Asset: TSLA", details);
             Assert.Contains("Strike Price: 300", details);
-            Assert.Contains("Expiration Date: 6/30/2025", details);
+            Assert.Contains("Expiration Date: 30/06/2025", details);
             Assert.Contains("Premium: 12", details);
             Assert.Contains("Quantity: 5", details);
             Assert.Contains("Currency: EUR", details);
             Assert.Contains("Style: European", details);
             Assert.Contains("Implied Volatility: 35%", details);
             Assert.Contains("Risk-Free Rate: 3%", details);
-            Assert.Contains("Trade Date: 1/1/2025", details);
+            Assert.Contains("Trade Date: 01/01/2025", details);
             Assert.Contains("Exchange: NASDAQ", details);
             Assert.Contains("Status: open", details);
             Assert.Contains("Owner: Alice", details);
