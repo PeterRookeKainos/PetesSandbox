@@ -566,9 +566,6 @@ namespace GitLabGenerateTests.Test
             var expected = option.IntrinsicValue(currentPrice) + option.ExtrinsicValue(currentPrice);
             Assert.Equal(expected, option.TotalValue(currentPrice));
         }
-         
-         
-         
         
         [Fact]
         public void IntrinsicValue_CallOption_InTheMoney_ReturnsCorrectValue()
