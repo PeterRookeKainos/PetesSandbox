@@ -1,0 +1,7 @@
+﻿services:
+  gitlabgeneratetests:
+    image: gitlabgeneratetests
+    build:
+      context: .
+      dockerfile: GitLabGenerateTests/Dockerfile
+

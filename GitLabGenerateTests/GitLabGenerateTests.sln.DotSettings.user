@@ -1,0 +1,11 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=329632dc_002Dcc50_002D44fd_002D81db_002D4078c0dc5d27/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="OptionTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::853D9C6E-D4B5-467C-8991-54EE7C2E827A::net9.0::GitLabGenerateTests.Test.OptionTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=906c500c_002D21ae_002D4238_002Dabd8_002D135b22d08a96/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="OptionTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::853D9C6E-D4B5-467C-8991-54EE7C2E827A::net9.0::GitLabGenerateTests.Test.OptionTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
