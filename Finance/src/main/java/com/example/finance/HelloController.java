@@ -1,4 +1,4 @@
-package com.example.sandbox;
+package com.example.finance;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
