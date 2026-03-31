@@ -35,6 +35,18 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>Finance/src/main/java</sourceDirectory>
+        <testSourceDirectory>Finance/src/test/java</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>Finance/src/main/resources</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>Finance/src/test/resources</directory>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
