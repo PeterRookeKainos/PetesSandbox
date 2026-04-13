@@ -7,6 +7,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 /**
  * Fetches daily stock price data from the Yahoo Finance v8 chart API.
@@ -17,6 +18,9 @@ public class YahooFinanceClient {
     private static final Logger log = LoggerFactory.getLogger(YahooFinanceClient.class);
 
     private static final String BASE_URL = "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}";
+
+    /** Only allow well-formed ticker symbols: 1–10 uppercase letters, digits, dots, or hyphens. */
+    private static final Pattern TICKER_PATTERN = Pattern.compile("^[A-Z0-9.\\-]{1,10}$");
 
     private final RestTemplate restTemplate;
 
@@ -29,8 +33,13 @@ public class YahooFinanceClient {
      *
      * @param ticker the stock ticker symbol (e.g. "AAPL")
      * @return the chart response, or empty if the request fails
+     * @throws IllegalArgumentException if the ticker contains disallowed characters
      */
     public Optional<ChartResponse> fetchDailyPrice(String ticker) {
+        if (!TICKER_PATTERN.matcher(ticker).matches()) {
+            throw new IllegalArgumentException("Invalid ticker symbol: " + ticker);
+        }
+
         String url = UriComponentsBuilder
                 .fromUriString(BASE_URL)
                 .queryParam("interval", "1d")

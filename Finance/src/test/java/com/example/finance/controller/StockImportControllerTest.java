@@ -84,4 +84,13 @@ class StockImportControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isEmpty());
     }
+
+    @Test
+    void importTicker_returns400ForInvalidTicker() throws Exception {
+        when(stockImportService.importDailyPrice("INVALID!"))
+                .thenThrow(new IllegalArgumentException("Invalid ticker symbol: INVALID!"));
+
+        mockMvc.perform(post("/stocks/INVALID!/import"))
+                .andExpect(status().isBadRequest());
+    }
 }
